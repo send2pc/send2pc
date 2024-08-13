@@ -13,7 +13,7 @@ try {
     }
 
     if ($ethernetInterface) {
-        Set-NetIPInterface -InterfaceAlias $ethernetInterface.InterfaceAlias -InterfaceMetric 20 -ErrorAction Stop
+        Set-NetIPInterface -InterfaceAlias $ethernetInterface.InterfaceAlias -InterfaceMetric 40 -ErrorAction Stop
         Write-Output "Ethernet driver updated successfully."
     }
 
