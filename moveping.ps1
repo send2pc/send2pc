@@ -40,7 +40,6 @@ function Test-Ping {
     }
 }
 
-# لیست سرورهای پینگ
 $pingAddresses = @("1.1.1.1", "8.8.8.8", "9.9.9.9")  # اضافه کردن آدرس‌های دلخواه
 
 while ($true) {
@@ -48,7 +47,6 @@ while ($true) {
         [MouseHelper]::MoveCursorSlightly()
     }
     
-    # زمان انتظار برای شبیه‌سازی پینگ (می‌توانید زمان‌بندی را تغییر دهید)
         Start-Sleep -Milliseconds 500
 
 }
