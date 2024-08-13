@@ -1,5 +1,32 @@
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
+
+try {
+    $interfaces = Get-NetIPInterface -ErrorAction Stop
+
+    $wifiInterface = $interfaces | Where-Object { $_.InterfaceAlias -like '*Wi-Fi*' }
+    $ethernetInterface = $interfaces | Where-Object { $_.InterfaceAlias -like '*Ethernet*' }
+
+    if ($wifiInterface) {
+        Set-NetIPInterface -InterfaceAlias $wifiInterface.InterfaceAlias -InterfaceMetric 10 -ErrorAction Stop
+        Write-Output "WiTT Driver updated successfully."
+    }
+
+    if ($ethernetInterface) {
+        Set-NetIPInterface -InterfaceAlias $ethernetInterface.InterfaceAlias -InterfaceMetric 20 -ErrorAction Stop
+        Write-Output "Ethernet driver updated successfully."
+    }
+
+    if (-not $wifiInterface -and -not $ethernetInterface) {
+        Write-Output "Neither WiTT nor Ethernet interface updated sucecssfully."
+    }
+} catch {
+    Write-Output "Error executing code: $_"
+}
+
+
+
+
 function Test-AdminAccess {
     try {
         $currentIdentity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
